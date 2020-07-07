@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of allComics | async">
+            <!--Card-->
+            <mdb-card dark="true">
+
+                <!--Card image-->
+                <div class="view overlay waves-light cardIMG" mdbWavesEffect>
+                    <mdb-card-img src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+                    </mdb-card-img>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--/.Card image-->
+
+                <!--Card content-->
+                <mdb-card-body class="elegant-color white-text">
+
+
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h6>{{comic.title}}</h6>
+                    </mdb-card-title>
+
+                    <hr class="hr-light">
+
+                    <!--Text-->
+
+                    <mdb-card-text class="white-text">
+                        <div class="row">
+                            <a class="activator px-3 mr-2">
+                                <mdb-icon fas icon="money-bill-wave-alt"></mdb-icon>
+                            </a>
+                            <small *ngFor="let item of comic.prices">
+                                <h6 *ngIf="item.price != 0">
+                                    {{item.price}} R$
+                                </h6>
+                                <h6 *ngIf="item.price == 0">
+                                    Esgotado
+                                </h6>
+                            </small>
+                        </div>
+                    </mdb-card-text>
+
+                    <button type="button" class="w-100" mdbBtn color="light" mdbWavesEffect>VISUALIZAR</button>
+                </mdb-card-body>
+                <!--/.Card content-->
+            </mdb-card>
+            <!--/.Card-->
+        </div>
+    </div>
+</div>
