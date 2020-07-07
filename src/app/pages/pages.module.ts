@@ -1,3 +1,4 @@
+import { CarouselComponent } from './../components/carousel/carousel.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ComicsComponent } from './comics/comics.component';
 import { PagesRoutingModule } from './pages-routing.module';
