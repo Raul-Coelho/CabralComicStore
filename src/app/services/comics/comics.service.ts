@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import Comic from 'src/app/models/comic.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class ComicsService {
 
   }
 
-  getAllComics(): Observable<any> {
-    return this.http.get<any>(this.API).pipe(map((res: any) => res.data.results));
+  getAllComics(): Observable<Comic[]> {
+    return this.http.get<Comic[]>(this.API).pipe(map((res: any) => res.data.results));
   }
 
 }
