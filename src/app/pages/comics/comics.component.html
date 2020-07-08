@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of allComics">
+        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of comics">
             <!--Card-->
             <mdb-card dark="true">
 
@@ -44,7 +44,8 @@
                         </div>
                     </mdb-card-text>
 
-                    <button type="button" class="w-100" mdbBtn color="light" mdbWavesEffect>VISUALIZAR</button>
+                    <button type="button" mdbBtn color="light" class="relative waves-light w-100"
+                        (click)="openModal(comic)" mdbWavesEffect>VISUALIZAR</button>
                 </mdb-card-body>
                 <!--/.Card content-->
             </mdb-card>

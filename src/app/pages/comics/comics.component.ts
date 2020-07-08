@@ -1,9 +1,11 @@
+import { ModalComponent } from './../../components/modal/modal.component';
 import { map, finalize } from 'rxjs/operators';
 import Swal from 'sweetalert2'
 import { ComicsService } from './../../services/comics/comics.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import Comic from 'src/app/models/comic.model';
+import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-comics',
@@ -15,8 +17,14 @@ export class ComicsComponent implements OnInit {
   allComics: Comic[] = [];
   comics: Comic[] = [];
   newComic: Comic;
+  modalRef: MDBModalRef;
 
-  constructor(private comicService: ComicsService) { }
+  listSize: number = 0;
+
+  constructor(
+    private comicService: ComicsService,
+    public modalService: MDBModalService,
+  ) { }
 
   showLoading() {
     Swal.fire({
@@ -31,6 +39,7 @@ export class ComicsComponent implements OnInit {
       finalize(() => {
         this.allComics.forEach(element => {
           this.newComic = new Comic;
+          this.newComic.id = element.id;
           this.newComic.title = element.title;
           this.newComic.description = element.description;
           this.newComic.format = element.format;
@@ -38,16 +47,35 @@ export class ComicsComponent implements OnInit {
           this.newComic.prices = element.prices;
           this.newComic.thumbnail = element.thumbnail;
           this.comics.push(this.newComic);
+
         });
-        console.log(this.comics);
+        this.listSize = this.comics.length;
         Swal.close();
       })
     ).subscribe();
   };
 
+  openModal(recivedComic: Comic) {
+    this.modalRef = this.modalService.show(ModalComponent, {
+      backdrop: true,
+      keyboard: true,
+      focus: true,
+      show: false,
+      ignoreBackdropClick: false,
+      class: 'modal-side modal-top-right',
+      containerClass: 'right',
+      animated: true,
+      data: {
+        heading: 'Comic',
+        comic: recivedComic
+      }
+    });
+  }
+
   ngOnInit() {
 
     this.showLoading();
+
 
   }
 
