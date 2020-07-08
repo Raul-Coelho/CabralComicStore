@@ -1,7 +1,7 @@
 
 # Cabral's Comic Store 
 
-![](./src/assets/imagens/logotipo-de-icone-de-letra-c_6711-286-removebg-preview.png)
+![](logo.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
