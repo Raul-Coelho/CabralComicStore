@@ -1,7 +1,96 @@
+<app-navbar></app-navbar>
+
+<app-header></app-header>
+
+<hr [ngStyle]="{'width': '90%'}">
+
+<!-- CAROUSEL  -->
+<app-carousel></app-carousel>
+
 <div class="container">
 
+    <div class="mt-3 row">
+        <div class="pricing-header px-2 py-2 pt-md-2 pb-md-1 mx-auto text-center">
+            <h1 class="display-4">Quadrinhos Comuns</h1>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of comics">
+        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of comumComics">
+            <!--Card-->
+            <mdb-card dark="true">
+
+                <!--Card image-->
+                <div class="view overlay waves-light cardIMG" mdbWavesEffect>
+                    <mdb-card-img src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" alt="{{comic.title}}">
+                    </mdb-card-img>
+                    <a>
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+                <!--/.Card image-->
+
+                <!--Card content-->
+                <mdb-card-body class="elegant-color white-text">
+
+
+                    <!--Title-->
+                    <mdb-card-title>
+                        <h6>{{comic.title}}</h6>
+                    </mdb-card-title>
+
+                    <hr class="hr-light">
+
+                    <!--Text-->
+
+                    <mdb-card-text class="white-text">
+                        <div class="row">
+
+                            <a class="activator px-3 mr-2">
+                                <mdb-icon fas icon="money-bill-wave-alt"></mdb-icon>
+                            </a>
+                            <small *ngFor="let item of comic.prices">
+                                <h6 *ngIf="item.price != 0">
+                                    {{item.price}} R$
+                                </h6>
+                                <h6 *ngIf="item.price == 0">
+                                    Esgotado
+                                </h6>
+                            </small>
+
+                        </div>
+                        <div class="row">
+
+                            <a class="activator px-3 mr-2">
+                                <mdb-icon fas size="1x" icon="book"></mdb-icon>
+                            </a>
+                            <small>
+                                <h6>
+                                    {{comic.type}}
+                                </h6>
+                            </small>
+                        </div>
+                    </mdb-card-text>
+
+                    <button type="button" mdbBtn color="light" class="relative waves-light w-100"
+                        (click)="openModal(comic)" mdbWavesEffect>VISUALIZAR</button>
+                </mdb-card-body>
+                <!--/.Card content-->
+            </mdb-card>
+            <!--/.Card-->
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="mt-3 row">
+        <div class="pricing-header px-2 py-2 pt-md-2 pb-md-1 mx-auto text-center">
+            <h1 class="display-4">Quadrinhos Raros</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mx-auto my-3 rounded" *ngFor="let comic of rareComics">
             <!--Card-->
             <mdb-card dark="true">
 
@@ -42,6 +131,18 @@
                                 </h6>
                             </small>
                         </div>
+                        <div class="row">
+
+                            <a class="activator px-3 mr-2">
+                                <mdb-icon fas size="1x" icon="book-dead"></mdb-icon>
+
+                            </a>
+                            <small>
+                                <h6>
+                                    {{comic.type}}
+                                </h6>
+                            </small>
+                        </div>
                     </mdb-card-text>
 
                     <button type="button" mdbBtn color="light" class="relative waves-light w-100"
@@ -52,4 +153,5 @@
             <!--/.Card-->
         </div>
     </div>
+
 </div>

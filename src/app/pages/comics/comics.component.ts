@@ -16,10 +16,15 @@ export class ComicsComponent implements OnInit {
 
   allComics: Comic[] = [];
   comics: Comic[] = [];
+
+  rareComics: Comic[] = [];
+  comumComics: Comic[] = [];
+
   newComic: Comic;
   modalRef: MDBModalRef;
 
   listSize: number = 0;
+  numberComicsRare: number = 0;
 
   constructor(
     private comicService: ComicsService,
@@ -34,22 +39,38 @@ export class ComicsComponent implements OnInit {
     })
     Swal.showLoading();
     this.allComics = [];
+
     this.comicService.getAllComics().pipe(
       map(allComics => this.allComics = allComics.filter(c => c.id > 0)),
       finalize(() => {
+        this.listSize = this.allComics.length;
+        this.numberComicsRare = Math.round(this.listSize * 12 / 100);
         this.allComics.forEach(element => {
           this.newComic = new Comic;
-          this.newComic.id = element.id;
-          this.newComic.title = element.title;
-          this.newComic.description = element.description;
-          this.newComic.format = element.format;
-          this.newComic.creators = element.creators;
-          this.newComic.prices = element.prices;
-          this.newComic.thumbnail = element.thumbnail;
-          this.comics.push(this.newComic);
-
+          if (this.numberComicsRare != 0) {
+            this.newComic.id = element.id;
+            this.newComic.title = element.title;
+            this.newComic.type = "RARA";
+            this.newComic.description = element.description;
+            this.newComic.format = element.format;
+            this.newComic.creators = element.creators;
+            this.newComic.prices = element.prices;
+            this.newComic.thumbnail = element.thumbnail;
+            this.rareComics.push(this.newComic);
+            this.numberComicsRare--;
+          } else {
+            this.newComic.id = element.id;
+            this.newComic.title = element.title;
+            this.newComic.type = "COMUM";
+            this.newComic.description = element.description;
+            this.newComic.format = element.format;
+            this.newComic.creators = element.creators;
+            this.newComic.prices = element.prices;
+            this.newComic.thumbnail = element.thumbnail;
+            this.comumComics.push(this.newComic);
+          }
         });
-        this.listSize = this.comics.length;
+        console.log(this.listSize);
         Swal.close();
       })
     ).subscribe();
