@@ -39,6 +39,16 @@
                 Esgotado
             </h6>
         </h6>
+        <hr [ngStyle]="{'width': '90%'}">
+
+        <p>
+            RARIDADE
+        </p>
+        <h6>
+            <mdb-icon *ngIf="comic.type == 'RARA'" fas size="1x" icon="book-dead"></mdb-icon>
+            <mdb-icon *ngIf="comic.type == 'COMUM'" fas size="1x" icon="book"></mdb-icon>
+            {{comic.type}}
+        </h6>
 
     </div>
 </div>
@@ -46,7 +56,7 @@
     <button type="button" disabled="true" *ngIf="comic.prices[0].price == 0" mdbBtn color="green"
         class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Comprar</button>
     <button type="button" *ngIf="comic.prices[0].price != 0" mdbBtn color="green" class="waves-light w-100"
-        aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Comprar</button>
+        aria-label="Close" (click)="cart(comic)" mdbWavesEffect>Comprar</button>
     <button type="button" mdbBtn color="red" class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()"
         mdbWavesEffect>Fechar</button>
 </div>

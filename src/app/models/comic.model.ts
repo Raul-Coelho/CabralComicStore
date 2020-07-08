@@ -5,6 +5,7 @@ import Thumbnail from './thumbnail.model';
 export default class Comic {
     id: number;
     title: string;
+    type: string;
     prices: Prices[];
     creators: CreatorsComic[];
     description: string;

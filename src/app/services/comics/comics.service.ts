@@ -13,7 +13,7 @@ export class ComicsService {
 
   id: number;
 
-  private readonly API = `${environment.marvelAPI.baseAPI}/comics${environment.marvelAPI.apiKey}`;
+  private readonly API = `${environment.marvelAPI.baseAPI}/comics${environment.marvelAPI.apiKey}&limit=40&offset=40`;
 
   constructor(private http: HttpClient) {
 

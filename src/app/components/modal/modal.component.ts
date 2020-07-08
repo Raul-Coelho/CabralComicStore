@@ -43,6 +43,10 @@ export class ModalComponent implements OnInit {
     ).subscribe();
   }
 
+  cart(comic: Comic) {
+    console.log(comic);
+  }
+
   ngOnInit(): void {
     this.getCreators();
   }
