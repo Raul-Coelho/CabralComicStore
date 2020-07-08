@@ -9,6 +9,7 @@ export const environment = {
     baseAPI: `https://gateway.marvel.com/v1/public`,
     apiKey: '?format=comic&apikey=e45b8e2e1aad094a4a2115918c7473f8',
     hash: '4b82c9dd37100044f6f1e8859397eabb',
+    creators: 'creators?apikey=e45b8e2e1aad094a4a2115918c7473f8'
   }
 };
 

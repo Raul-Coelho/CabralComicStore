@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ComicsComponent } from './pages/comics/comics.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HeaderComponent } from './components/header/header.component';
     CarouselComponent,
     ComicsComponent,
     HeaderComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

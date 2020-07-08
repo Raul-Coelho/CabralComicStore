@@ -1,0 +1,52 @@
+<div class="modal-header bg-img">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100 text-white " id="myModalLabel">{{comic.format}}</h4>
+</div>
+<!--Body-->
+<div class="modal-body">
+    <div class="text-center">
+        <h5 class="mb-1 mt-1">
+            {{comic.title}}
+        </h5>
+        <table mdbTable mdbTableScroll scrollY="true" maxHeight="200">
+            <thead class="black white-text w-100">
+                <tr>
+                    <th scope="col">Criadores</th>
+                    <th scope="col">Data de Modificação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr mdbTableCol *ngFor="let creator of creators">
+                    <td>{{creator.fullName}}</td>
+                    <td>{{creator.modified | date}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr [ngStyle]="{'width': '90%'}">
+        <p>
+            PREÇOS
+        </p>
+        <h6 *ngFor="let item of comic.prices">
+            <h6 *ngIf="item.price != 0">
+                <mdb-icon fas icon="money-bill-alt"></mdb-icon>
+
+                {{item.price}}
+            </h6>
+            <h6 *ngIf="item.price == 0">
+                <mdb-icon fas icon="money-bill-alt"></mdb-icon>
+                Esgotado
+            </h6>
+        </h6>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" disabled="true" *ngIf="comic.prices[0].price == 0" mdbBtn color="green"
+        class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Comprar</button>
+    <button type="button" *ngIf="comic.prices[0].price != 0" mdbBtn color="green" class="waves-light w-100"
+        aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Comprar</button>
+    <button type="button" mdbBtn color="red" class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()"
+        mdbWavesEffect>Fechar</button>
+</div>
