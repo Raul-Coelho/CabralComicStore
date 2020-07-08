@@ -3,8 +3,9 @@ import { Observable } from 'rxjs';
 import { ComicsService } from './../../services/comics/comics.service';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import Comic from 'src/app/models/comic.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import Creator from 'src/app/models/creator.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -13,15 +14,17 @@ import Creator from 'src/app/models/creator.model';
 })
 export class ModalComponent implements OnInit {
 
+  @Input() comic: Comic;
+
   heading: string;
-  comic: Comic;
   allCreators: Creator[] = [];
   creators: Creator[] = [];
   newcreator: Creator;
 
   constructor(
     public modalRef: MDBModalRef,
-    private comicService: ComicsService
+    private comicService: ComicsService,
+    public router: Router
   ) { }
 
   getCreators() {
@@ -38,13 +41,14 @@ export class ModalComponent implements OnInit {
           this.newcreator.modified = element.modified;
           this.creators.push(this.newcreator);
         });
-        console.log(this.creators);
       })
     ).subscribe();
   }
 
-  cart(comic: Comic) {
-    console.log(comic);
+  cart(selectedComic: Comic) {
+    console.log(selectedComic);
+    this.router.navigateByUrl('cart', { state: { selectedComic: selectedComic } });
+    // console.log(selectedComic)
   }
 
   ngOnInit(): void {

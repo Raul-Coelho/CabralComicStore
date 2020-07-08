@@ -1,3 +1,5 @@
+import Comic from 'src/app/models/comic.model';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  public nav: any;
+  public comic: Comic;
+  public items: Comic[] = [];
+
+  constructor(
+    private router: Router,
+
+  ) {
+    this.nav = this.router.getCurrentNavigation();
+  }
+
+  getRecivedComic() {
+    this.items = [];
+    this.comic = this.nav.extras.state.selectedComic;
+  }
 
   ngOnInit(): void {
+    console.log(this.getRecivedComic());
   }
 
 }

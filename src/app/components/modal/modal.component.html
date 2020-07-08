@@ -56,7 +56,7 @@
     <button type="button" disabled="true" *ngIf="comic.prices[0].price == 0" mdbBtn color="green"
         class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()" mdbWavesEffect>Comprar</button>
     <button type="button" *ngIf="comic.prices[0].price != 0" mdbBtn color="green" class="waves-light w-100"
-        aria-label="Close" (click)="cart(comic)" mdbWavesEffect>Comprar</button>
+        aria-label="Close" (click)="cart(comic);modalRef.hide()" mdbWavesEffect>Comprar</button>
     <button type="button" mdbBtn color="red" class="waves-light w-100" aria-label="Close" (click)="modalRef.hide()"
         mdbWavesEffect>Fechar</button>
 </div>

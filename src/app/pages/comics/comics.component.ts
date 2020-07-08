@@ -70,7 +70,6 @@ export class ComicsComponent implements OnInit {
             this.comumComics.push(this.newComic);
           }
         });
-        console.log(this.listSize);
         Swal.close();
       })
     ).subscribe();
